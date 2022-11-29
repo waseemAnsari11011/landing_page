@@ -10,9 +10,7 @@ const publicDirectoryPath = path.join(__dirname, "./client");
 app.use(express.static(publicDirectoryPath));
 const port = process.env.PORT || 3600;
 
-mongoose.connect(
-  "mongodb+srv://eshop-user:1234567Ww@cluster0.m7qgjqu.mongodb.net/?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.MONGOURL);
 
 const Emails = mongoose.model("Emails", {
   name: {
@@ -33,7 +31,7 @@ app.post("/formdata", async (req, res) => {
     service: "gmail",
     auth: {
       user: "waseemahm05@gmail.com",
-       pass: "gwppalxvtifivfvi",
+       pass: process.env.EMAILPASS,
     },
   });
 
